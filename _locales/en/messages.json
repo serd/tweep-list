@@ -1,0 +1,11 @@
+{
+	"extName": {
+		"message" : "Tweep List"
+		,"description" : "Extension name."
+	}
+	
+	,"extDescription": {
+		"message"  : "Adds an avatar menu to Twitter for quickly accessing user timelines."
+		,"description" : "Extension description."
+	}
+}

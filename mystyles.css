@@ -1,0 +1,135 @@
+.tweepList_Menu_Class {
+	position: absolute;
+	right: -58px;
+	width: 60px;
+}
+
+.tweepList_Menu_Class .menuContainer {
+	
+	border: 1px solid rgba(0,0,0,.1);
+	border-radius:5px;
+}
+
+.tweepList_Menu_Class .menuContainer.fixed {
+	position:fixed;
+}
+
+
+
+
+.tweepList_Menu_Class .resizeHandle {
+	
+	background-position: 19px 3px;
+	width: 100%;
+	height: 13px;
+	border-radius: 0 0 5px 5px;
+	border-top: 1px solid rgba(0, 0, 0, 0.0980392);
+	
+	position: absolute;
+	bottom:0;
+	left:0;
+	
+	
+}
+
+.tweepList_Menu_Class .resizeHandle {
+	background-position: 19px -23px;
+	
+}
+
+.tweepList_Menu_Class .menuFixToggle {
+	cursor:pointer;
+	background-position: 19px -47px;
+	width: 100%;
+	height: 13px;
+	border-radius: 5px 5px 0 0;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.0980392);
+}
+
+.tweepList_Menu_Class .menuFixToggle.fixed {
+	background-position: 19px -71px;
+}
+
+.tweepList_Menu_Class .menuFixToggle:hover {
+	background-position: 19px -71px;
+}
+
+
+
+.tweepList_Menu_Class .scrollArrow.down {
+	background-position: -58px -10px;
+	
+	position: absolute;
+	bottom:14px;
+	left:12px;
+	
+	
+}
+
+.tweepList_Menu_Class .scrollArrow.down:hover {
+	background-position: -108px -10px;
+}
+
+
+
+
+
+	
+.tweepList_Menu_Class .inner {
+		background:#f9f9f9;
+		
+		min-height:100px;
+		height:406px;
+		
+		
+		border-radius:5px;
+}
+
+.tweepList_Menu_Class .avatar {
+	width:34px;
+	height:34px;
+	display:block;
+}
+
+.tweepList_Menu_Class .tweepAvatars {
+	height:310px;
+	min-width:34px;
+	overflow-y: hidden;
+	padding: 0px 12px;
+}
+
+.tweepList_Menu_Class .tweepAvatars a {
+	width:34px;
+	height:34px;
+	display:block;
+	margin:0 0 12px 0;
+}
+
+.tweepList_PageContainer {
+	float:left;
+	width:837px;
+}
+
+
+
+.tweepList_Menu_Class .scrollArrow.up {
+	background-position: -7px -10px;
+}
+
+.tweepList_Menu_Class .scrollArrow.up:hover {
+	background-position: -158px -10px;
+}
+
+.tweepList_Menu_Class .scrollArrow {
+	display:block;
+	width:34px;
+	height:34px;
+	margin:0 auto;
+	text-decoration:none;
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAAAyCAYAAAAZUZThAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAMwSURBVHjaYvz//z/DKBgFowA7AAggptEgGAWjADcACKDRDDIKRgEeABBAoxlkFIwCPAAggEYzyCgYBXgAQACNZpBRMArwAIAAGs0go2AU4AEAATSaQUbBKMADAAJoNIOMglGABwAE0GgGGQWjAA8ACKDRDDIKRgEeABBAoxlkFIwCPAAggEYzyCgYBXgAQACNZpBRMArwAIAAGs0go2AU4AEAATSaQUbBKMADAAJoNIOMglGABwAE0GgGGQWjAA8ACKDRDDIKRgEeABBAoxlkFIwCPAAggEYzyCgYBXgAQACNZpBRMArwAIAAGs0go2AU4AEAATSaQUbBKMADAAKIphmEkZFRGIiNQfRQCxio2w2AmAuHPBdUXniQ+8MKiPuBWBaHvCxU3mqIxQ/IXzNp7W6AAGKiZQIDUgpQrsIQzCSgBMUMxGromQTKV4PKyw5yf4QCMci9ReiZBMovgsqHDvYIaWxsBGNopoiHCsfTMpMABBATjTIHF5aEI4urNB6k4BYQ/4VlEjQ5WOb4C1U3mEEfEH9DzyRomeMbVN2gBw0NDbJYMnMorhqSUgAQQIzUPnoUrXQFJaDHSKUxOEEB7fw2RKrxYeEXLJlhNVLNAs4cQH88HvUHJgAIICZaJiigYy8A8VsQjVwaD5WaBJr4kWsShaGY0aGJBrkmiR8GmaMPWJscw1VDUgsABBC1m1j4mh74miyDPZOgJ6DHQyVzoGWS1WjCq4dC5oAC9MzxGEfmL6KmpQABRNUmFrQjLourdEWqYUAJ7O0QGzWBDTo8GGpuRx/9gdYgC4H+ODbE3B2Kq8ZDqmFWU9NfAAHEOHr9wSgYBbgBQACNThSOglGABwAE0GgGGQWjAA8ACKDRDDIKRgEeABBAoxlkFIwCPAAggEYzyCgYBXgAQACNZpBRMArwAIAAGs0go2AU4AEAATSaQUbBKMADAAJoNIOMglGABwAE0GgGGQWjAA8ACKDRDDIKRgEeABBAoxlkFIwCPAAggEYzyCgYBXgAQACNZpBRMArwAIAAGs0go2AU4AEAATSaQUbBKMADAAJoNIOMglGABwAE0GgGGQWjAA8ACDAARaKs7lJ0YsoAAAAASUVORK5CYII=) no-repeat;
+	
+}
+
+.tweepList_Menu_Class_uiIcons {
+	background: #efefef url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAABQCAYAAAAZQFV3AAAASUlEQVR42u3XQRGAMAxFwd8OvmING9GBJ3Qggh4YuusgyeFNRnefWehIkqrKPoYdArBV9S7Vs0MA+Mm/PFePPF0dgC93+dblVx6LAxMjVCyOiAAAAABJRU5ErkJggg==) center center no-repeat;
+}
