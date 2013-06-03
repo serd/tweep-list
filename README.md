@@ -1,6 +1,8 @@
 Tweep List
 ==========
 
+A Chrome extension which adds an avatar menu to Twitter for quickly accessing user timelines.
+
 One-click access to user timelines.
 
 Drag any avatar to the menu to add to your list.
