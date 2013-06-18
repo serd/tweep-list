@@ -4,8 +4,6 @@ Copyright © klivk.com
 ---------------------
 */
 
-
-
 var STRINGS= {
 	'title':chrome.i18n.getMessage("extName")
 };
@@ -23,7 +21,7 @@ var INIT_TRY_DELAY = 1000;
 var CHECK_THINGS_DELAY=5000;
 var MAX_INIT_TRY_COUNT=5;
 
-var STORAGE_PREFIX = 'TWL_v01_';
+var STORAGE_PREFIX = 'TWEEPLIST_v01_';
 var STORAGE_LIST_ITEM_SPLIT = 20;
 
 var MAX_LIST_ITEMS = 100;
@@ -110,7 +108,6 @@ function TweepListStorage(myTweepList, userId, userName) {
 			var tempArray = this.listItems.slice(i*STORAGE_LIST_ITEM_SPLIT, (i+1)*STORAGE_LIST_ITEM_SPLIT);
 			dataObj[this.storageName+'_list_'+i] = JSON.stringify(tempArray);
 		}
-		
 		chrome.storage.sync.set(dataObj);
 		
 		
@@ -182,7 +179,9 @@ function TweepListStorage(myTweepList, userId, userName) {
 		
 		chrome.storage.sync.get(storageKeys, function(result){
 			var storageName = self.storageName;
-			if (result[storageName+'_main']) {
+			
+			
+			if (result && result[storageName+'_main']) {
 				
 				//merge list item slices into one array
 				for (var i=0; i < self.listSliceCount; i++) {
@@ -248,12 +247,12 @@ function setMenuFixedType(menuId, menuFixedFlag) {
 	var menuFixedButton = $('.menuFixToggle');
 
 	if (menuFixedFlag == true) {
-		menuFixedButton.attr('title','switch to regular view');
+		menuFixedButton.attr('title','unpin menu');
 		$('#' + menuId +' .menuContainer').addClass('fixed');
 		$('.menuFixToggle').addClass('fixed');
 	}
 	else {
-		menuFixedButton.attr('title','switch to fixed view');
+		menuFixedButton.attr('title','pin menu');
 		$('#' + menuId +' .menuContainer').removeClass('fixed');
 		$('.menuFixToggle').removeClass('fixed');
 	}
