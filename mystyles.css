@@ -1,13 +1,9 @@
 .tweepList_Menu_Class {
-	position: absolute;
-	right: -58px;
-	width: 60px;
+	
 }
 
 .tweepList_Menu_Class .menuContainer {
 	
-	border: 1px solid rgba(0,0,0,.1);
-	border-radius:5px;
 }
 
 .tweepList_Menu_Class .menuContainer.fixed {
@@ -71,43 +67,63 @@
 }
 
 
+.tweepList_Menu_Class .btn-link {
+	font-size:12px;
+}
 
+.tweepList_Menu_Class .flex-module-header h3 {
+	color: #66757f !important;
+}
 
 
 	
 .tweepList_Menu_Class .inner {
-		background:#f9f9f9;
-		
-		min-height:100px;
-		height:406px;
-		
-		
-		border-radius:5px;
+	min-height:100px;
+	border-radius:5px;
 }
 
 .tweepList_Menu_Class .avatar {
-	width:34px;
-	height:34px;
+	width:36px;
+	height:36px;
 	display:block;
+	margin:0;
+	padding:0;
 }
+
+.tweepList_Menu_Class .avatar.ui-draggable {
+	left:auto !important;
+	float:left !important;
+	position:static !important;
+}
+
+
 
 .tweepList_Menu_Class .tweepAvatars {
-	height:310px;
-	min-width:34px;
 	overflow-y: hidden;
-	padding: 0px 12px;
+	padding: 0;
+	min-height:100px;
 }
 
-.tweepList_Menu_Class .tweepAvatars a {
-	width:34px;
-	height:34px;
-	display:block;
-	margin:0 0 12px 0;
+.tweepList_Menu_Class .tweepAvatars .menuItem {
+	width:36px;
+	height:36px;
+	float:left;
+	margin:4px;
+}
+
+.tweepList_Menu_Class .tweepAvatars .menuItem:nth-child(6n+1) {
+	margin-left:0;
+	
+}
+
+.tweepList_Menu_Class .tweepAvatars .menuItem:nth-child(6n) {
+	margin-right:0;
+	
 }
 
 .tweepList_PageContainer {
 	float:left;
-	width:837px;
+	width:892px;
 }
 
 

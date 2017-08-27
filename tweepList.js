@@ -35,14 +35,20 @@ var DEFAULT_MENU_HEIGHT = 406;
 
 var initExtensionInterval;
 
-initExtension();
+
+setTimeout(function(){
+	initExtension();
+}, 1000);
+
+
 
 function initExtension() {
 
 	
 	
 	
-	if ($('.dashboard').length==0) {
+	if ($('.dashboard, .ProfileWTFAndTrends').length==0) {
+	
 		initTryCount++;
 		if (initTryCount < MAX_INIT_TRY_COUNT) {
 			initExtensionInterval=setTimeout(initExtension, INIT_TRY_DELAY);
@@ -58,6 +64,9 @@ function initExtension() {
 		checkThings('slow');
 	}, CHECK_THINGS_DELAY);
 	
+
+	console.log('hi');
+
 }
 
 function TweepListItem (userName, avatarUrl, userId) {
@@ -230,14 +239,14 @@ function deleteFromStorage(userStorage, itemIndex) {
 
 
 function generateItem(item) {
-	return $('<a class="tweepListItem js-nav" title="'+item.userName+'" href="/'+item.userName+'"><img class="avatar" src="'+item.avatarUrl+'" alt=""></a>');
+	return $('<a class="tweepListItem js-nav menuItem" title="'+item.userName+'" href="/'+item.userName+'"><img class="avatar" src="'+item.avatarUrl+'" alt=""></a>');
 }
 
 function generateListItems(listItems, menuId) {
 	
 	for (var i = 0; i < listItems.length; i++) {
 		//if (!listItems[i]) { continue; }
-		$('#'+menuId+' .tweepAvatars').append('<a class="tweepListItem js-nav" title="'+listItems[i].userName+'" href="/'+listItems[i].userName+'"><img class="avatar" src="'+listItems[i].avatarUrl+'" alt=""></a>');
+		$('#'+menuId+' .tweepAvatars').append('<a class="tweepListItem js-nav menuItem" title="'+listItems[i].userName+'" href="/'+listItems[i].userName+'"><img class="avatar" src="'+listItems[i].avatarUrl+'" alt=""></a>');
 	}
 	
 }
@@ -302,9 +311,52 @@ function TweepList(instanceIndex) {
 		
 		
 		if (refreshFlag == false) {
+		
+			////////////
+			
+			
+			var TEST_BOX =
+					'<div class="module tweepList_Menu_Class" id="'+menuId+'"><div class="flex-module">'
+				+		'<div class="menuContainer"><div class="inner">'
+				+		'<div class="flex-module-header"><h3>Tweep List</h3> · <a class="btn-link" href="http://klivk.com/tweep-list/">About</a></div>'
+				+			'<div class="tweepAvatars"></div>'
+				+		'</div></div>'
+				+	'</div></div>'
+			;
+			
+			
+			
+			var targetContainer = false;
+			
+			if ($('.dashboard-right').length) {
+				targetContainer = $('.dashboard-right');
+			}
+			else if ($('.ProfileWTFAndTrends').length) {
+				targetContainer = $('.ProfileWTFAndTrends');
+			}
+			
+			if (targetContainer == false) {
+				return false;
+			}
+			
+			
+			targetContainer.prepend(TEST_BOX);
+			
+			
+			
+			////////////
+		
 			//setup initial layout
-			$( "#page-container").wrapInner('<div class="tweepList_PageContainer" />');
-			$('#page-container').append(tweepMenuHTML);
+			
+			//$("#page-container").wrapInner('<div class="tweepList_PageContainer" />');
+			
+			
+			//var pageContainerWidth = $("#page-container").width();
+			
+			
+			//$('#page-container').append(tweepMenuHTML);
+			
+			
 			
 		
 		}
@@ -313,8 +365,8 @@ function TweepList(instanceIndex) {
 		
 		setMenuFixedType(menuId, this.userStorage.menuFixedFlag);
 	
-		$('.menuContainer .inner').height(this.userStorage.menuHeight);
-		$('.tweepAvatars').height($('.menuContainer .inner').height() - diffHeightForResize);
+		//$('.menuContainer .inner').height(this.userStorage.menuHeight);
+		//$('.tweepAvatars').height($('.menuContainer .inner').height() - diffHeightForResize);
 		
 		
 		
@@ -702,15 +754,35 @@ function outFarEnoughToDelete(ui, container) {
 }
 
 function addEventsToAvatars() {
+	console.log($('#page-container .avatar').length);
 	
-	$('.tweepList_PageContainer').on('mouseover.tweepListDrag', '.avatar', function(){
+	$('#profile-hover-container').on('mouseover.tweepListDrag', function(e){
+			
+		console.log('HOVER');	
+			
+	});	
+	
+	$('#page-container').on('mouseover.tweepListDrag', '.tweet, .UserSmallListItem', function(e){
 		
-		if ($(this).parent().parent().hasClass('stream-item-header')) {
+		var thisAvatar = $(this).find('.avatar');
+		if(!thisAvatar) {
+			return;
+		}
+		
+		e.preventDefault();
+		
+		console.log('OVER');
+		
+		if (thisAvatar.parent().hasClass('tweepListItem')) {
+			return false;
+		}
+		
+		if (thisAvatar.parent().parent().hasClass('stream-item-header')) {
 			
 			
 			
 			var leftPosition;
-			var leftMargin = $(this).css('margin-left');
+			var leftMargin = thisAvatar.css('margin-left');
 			
 			switch(leftMargin) {
 				case '-42px':
@@ -721,7 +793,7 @@ function addEventsToAvatars() {
 				break;
 			}
 			
-			$(this).css({
+			thisAvatar.css({
 				position:'absolute'
 				,left: leftPosition
 				,marginLeft:'0'
@@ -729,7 +801,10 @@ function addEventsToAvatars() {
 		
 		}
 		
-		$(this).draggable({
+		var self = thisAvatar;
+		
+		
+		thisAvatar.draggable({
 			helper: 'clone'
 			,appendTo: 'body'
 			,connectToSortable: '#tweepList_Menu_0 .tweepAvatars'
@@ -740,14 +815,22 @@ function addEventsToAvatars() {
 			}
 			,start: function(e,ui) {
 				
+				
+				
 				ui.helper.removeClass('js-tooltip');
-				ui.helper.css('z-index','9999');
+				ui.helper.css({
+					zIndex: 9999
+					,float: 'left'
+					
+				});
+				
+				self.addClass('menuItem avatar');
 				
 			}
 			
 		});
 		
-		$(this).off('mouseover.tweepListDrag'); 
+		thisAvatar.off('mouseover.tweepListDrag');
 		
 	});
 	
@@ -772,7 +855,7 @@ function checkThings(speed) {
 		
 		
 		
-		if ($('.dashboard').length) {
+		if ( $('.dashboard-right').length || $('.ProfileWTFAndTrends').length ) {
 			
 			
 			
@@ -792,6 +875,7 @@ function checkThings(speed) {
 		
 	}
 	else if ($( '#tweepList_Menu_0'+' .tweepAvatars' ).data('uiSortable') === undefined) {
+		
 		
 		
 		instancesArray[0].initTweepList(true);
