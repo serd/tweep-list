@@ -15,4 +15,4 @@ A Chrome extension which adds an avatar menu to Twitter for quickly accessing us
 
 - Syncs your list with your Google Chrome account.
 
-Copyright © klivk.com
+Copyright © serdar.work
