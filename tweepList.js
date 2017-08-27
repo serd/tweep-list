@@ -38,7 +38,7 @@ var initExtensionInterval;
 
 setTimeout(function(){
 	initExtension();
-}, 1000);
+}, 100);
 
 
 
@@ -63,6 +63,8 @@ function initExtension() {
 	checkThingsInterval=setTimeout(function() {
 		checkThings('slow');
 	}, CHECK_THINGS_DELAY);
+	
+	console.log('hi');
 	
 
 }
@@ -860,12 +862,10 @@ function addEventsToAvatars() {
 function checkThings(speed) {
 	
 	
-	
-	
 	var checkInterval;
 	
 	if (speed=='fast') {
-		checkInterval = 100;
+		checkInterval = 200;
 	}
 	else {
 		checkInterval = CHECK_THINGS_DELAY;
@@ -875,7 +875,7 @@ function checkThings(speed) {
 		
 		
 		
-		if ( $('.dashboard-right').length || $('.ProfileWTFAndTrends').length ) {
+		if ( $('.dashboard-right').length || $('.ProfileWTFAndTrends').length || $('.ProfileSidebar .MoveableModule .SidebarCommonModules').length ) {
 			
 			
 			
