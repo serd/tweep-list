@@ -1,6 +1,6 @@
 /*
 ---------------------
-Copyright © klivk.com
+Copyright © Serdar Soy
 ---------------------
 */
 
@@ -47,7 +47,7 @@ function initExtension() {
 	
 	
 	
-	if ($('.dashboard, .ProfileWTFAndTrends').length==0) {
+	if ($('.dashboard, .ProfileWTFAndTrends, .stream-container').length==0) {
 	
 		initTryCount++;
 		if (initTryCount < MAX_INIT_TRY_COUNT) {
@@ -64,8 +64,6 @@ function initExtension() {
 		checkThings('slow');
 	}, CHECK_THINGS_DELAY);
 	
-
-	console.log('hi');
 
 }
 
@@ -318,7 +316,7 @@ function TweepList(instanceIndex) {
 			var TEST_BOX =
 					'<div class="module tweepList_Menu_Class" id="'+menuId+'"><div class="flex-module">'
 				+		'<div class="menuContainer"><div class="inner">'
-				+		'<div class="flex-module-header"><h3>Tweep list</h3> · <a class="btn-link" href="http://klivk.com/tweep-list/">About</a></div>'
+				+		'<div class="flex-module-header"><h3>Tweep list</h3> · <a class="btn-link" href="http://serdar.work">About</a></div>'
 				+			'<div class="tweepAvatars"></div>'
 				+		'</div></div>'
 				+	'</div></div>'
@@ -334,6 +332,11 @@ function TweepList(instanceIndex) {
 			else if ($('.ProfileWTFAndTrends').length) {
 				targetContainer = $('.ProfileWTFAndTrends');
 			}
+			else if ($('.ProfileSidebar .MoveableModule .SidebarCommonModules').length) {
+				targetContainer = $('.ProfileSidebar .MoveableModule .SidebarCommonModules');
+			}
+			
+			
 			
 			if (targetContainer == false) {
 				return false;
@@ -762,8 +765,6 @@ function outFarEnoughToDelete(ui, container) {
 
 function addAvatarEvents(container) {
 	
-	console.log('HOVER');
-	
 	var thisAvatar = container.find('.avatar');
 	
 	if(thisAvatar.length == 0) {
@@ -812,7 +813,7 @@ function addAvatarEvents(container) {
 		,stack: 'img'
 		,revert: 'invalid'
 		,scroll: true
-		,containment: 'html, body'
+
 		,stop: function( event, ui ) {
 		
 		}
@@ -839,10 +840,9 @@ function addAvatarEvents(container) {
 
 
 function addEventsToAvatars() {
-	console.log($('#page-container .avatar').length);
 	
 	$('body').on('mouseover.tweepListDrag', '#profile-hover-container .ProfileCard-avatarLink', function(e){
-		console.log('TEST 1');
+		
 		addAvatarEvents($(this));
 		
 	});

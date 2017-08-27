@@ -6,6 +6,10 @@ html, body {
 	
 }
 
+.SidebarCommonModules .tweepList_Menu_Class {
+	margin-top: 10px;
+}
+
 .tweepList_Menu_Class .menuContainer {
 	
 }
@@ -78,8 +82,6 @@ html, body {
 .tweepList_Menu_Class .flex-module-header h3 {
 	
 }
-
-
 	
 .tweepList_Menu_Class .inner {
 	min-height:100px;
