@@ -11,8 +11,6 @@ A Chrome extension which adds an avatar menu to Twitter for quickly accessing us
 
 - No need to follow a user to add it to your list. You can follow people easily without actually following.
 
-- Pin your menu by clicking on the top handle. Resize it by dragging the bottom handle.
-
 - Syncs your list with your Google Chrome account.
 
 Copyright © serdar.work
