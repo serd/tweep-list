@@ -64,8 +64,6 @@ function initExtension() {
 		checkThings('slow');
 	}, CHECK_THINGS_DELAY);
 	
-	console.log('hi');
-	
 
 }
 
