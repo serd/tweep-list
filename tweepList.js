@@ -318,7 +318,7 @@ function TweepList(instanceIndex) {
 			var TEST_BOX =
 					'<div class="module tweepList_Menu_Class" id="'+menuId+'"><div class="flex-module">'
 				+		'<div class="menuContainer"><div class="inner">'
-				+		'<div class="flex-module-header"><h3>Tweep List</h3> · <a class="btn-link" href="http://klivk.com/tweep-list/">About</a></div>'
+				+		'<div class="flex-module-header"><h3>Tweep list</h3> · <a class="btn-link" href="http://klivk.com/tweep-list/">About</a></div>'
 				+			'<div class="tweepAvatars"></div>'
 				+		'</div></div>'
 				+	'</div></div>'
@@ -577,6 +577,8 @@ function getDataFromAvatar(currentItem, ui) {
 	userAvatarUrl = ui.item[0].src;
 	
 	
+	
+	
 	//avatar on profile header
 	if (ui.sender.parent().parent().hasClass('profile-header-inner')) {
 		
@@ -593,6 +595,10 @@ function getDataFromAvatar(currentItem, ui) {
 	else {
 		userId = ui.sender.attr('data-user-id');
 		userName = ui.sender.parent().attr('href').substring(1);
+	}
+	
+	if (ui.sender.hasClass('ProfileCard-avatarImage')){
+		userId = ui.sender.parent().parent().find('.ProfileCard-actions .user-actions').attr('data-user-id');
 	}
 	
 	
@@ -753,84 +759,98 @@ function outFarEnoughToDelete(ui, container) {
 
 }
 
+
+function addAvatarEvents(container) {
+	
+	console.log('HOVER');
+	
+	var thisAvatar = container.find('.avatar');
+	
+	if(thisAvatar.length == 0) {
+		thisAvatar = container.find('.js-action-profile-avatar');
+	}
+	
+	if(!thisAvatar) {
+		return;
+	}
+	
+	if (thisAvatar.parent().hasClass('tweepListItem')) {
+		return false;
+	}
+	
+	if (thisAvatar.parent().parent().hasClass('stream-item-header')) {
+		
+		
+		
+		var leftPosition;
+		var leftMargin = thisAvatar.css('margin-left');
+		
+		switch(leftMargin) {
+			case '-42px':
+				leftPosition = '28px';
+			break;
+			case '-58px':
+				leftPosition = '12px';
+			break;
+		}
+		
+		thisAvatar.css({
+			position:'absolute'
+			,left: leftPosition
+			,marginLeft:'0'
+		});
+	
+	}
+	
+	var self = thisAvatar;
+	
+	
+	thisAvatar.draggable({
+		helper: 'clone'
+		,appendTo: 'body'
+		,connectToSortable: '#tweepList_Menu_0 .tweepAvatars'
+		,stack: 'img'
+		,revert: 'invalid'
+		,scroll: true
+		,containment: 'html, body'
+		,stop: function( event, ui ) {
+		
+		}
+		,start: function(e,ui) {
+			
+			
+			
+			ui.helper.removeClass('js-tooltip');
+			ui.helper.css({
+				zIndex: 9999
+				,float: 'left'
+				
+			});
+			
+			self.addClass('menuItem avatar');
+			
+		}
+		
+	});
+	
+	thisAvatar.off('mouseover.tweepListDrag');
+	
+}
+
+
 function addEventsToAvatars() {
 	console.log($('#page-container .avatar').length);
 	
-	$('#profile-hover-container').on('mouseover.tweepListDrag', function(e){
-			
-		console.log('HOVER');	
-			
-	});	
+	$('body').on('mouseover.tweepListDrag', '#profile-hover-container .ProfileCard-avatarLink', function(e){
+		console.log('TEST 1');
+		addAvatarEvents($(this));
+		
+	});
+	
 	
 	$('#page-container').on('mouseover.tweepListDrag', '.tweet, .UserSmallListItem', function(e){
 		
-		var thisAvatar = $(this).find('.avatar');
-		if(!thisAvatar) {
-			return;
-		}
-		
-		e.preventDefault();
-		
-		console.log('OVER');
-		
-		if (thisAvatar.parent().hasClass('tweepListItem')) {
-			return false;
-		}
-		
-		if (thisAvatar.parent().parent().hasClass('stream-item-header')) {
-			
-			
-			
-			var leftPosition;
-			var leftMargin = thisAvatar.css('margin-left');
-			
-			switch(leftMargin) {
-				case '-42px':
-					leftPosition = '28px';
-				break;
-				case '-58px':
-					leftPosition = '12px';
-				break;
-			}
-			
-			thisAvatar.css({
-				position:'absolute'
-				,left: leftPosition
-				,marginLeft:'0'
-			});
-		
-		}
-		
-		var self = thisAvatar;
-		
-		
-		thisAvatar.draggable({
-			helper: 'clone'
-			,appendTo: 'body'
-			,connectToSortable: '#tweepList_Menu_0 .tweepAvatars'
-			,stack: 'img'
-			,revert: 'invalid'
-			,stop: function( event, ui ) {
-			
-			}
-			,start: function(e,ui) {
-				
-				
-				
-				ui.helper.removeClass('js-tooltip');
-				ui.helper.css({
-					zIndex: 9999
-					,float: 'left'
-					
-				});
-				
-				self.addClass('menuItem avatar');
-				
-			}
-			
-		});
-		
-		thisAvatar.off('mouseover.tweepListDrag');
+		addAvatarEvents($(this));
 		
 	});
 	

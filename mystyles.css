@@ -1,3 +1,7 @@
+html, body {
+	overflow-y: visible !important;
+}
+
 .tweepList_Menu_Class {
 	
 }
@@ -72,7 +76,7 @@
 }
 
 .tweepList_Menu_Class .flex-module-header h3 {
-	color: #66757f !important;
+	
 }
 
 
