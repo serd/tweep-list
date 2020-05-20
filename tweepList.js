@@ -44,10 +44,10 @@ setTimeout(function(){
 
 function initExtension() {
 
+	console.log('tweeplist init');
 	
 	
-	
-	if ($('.dashboard, .ProfileWTFAndTrends, .stream-container').length==0) {
+	if ($('.dashboard, .ProfileWTFAndTrends, .stream-container, .css-1dbjc4n.r-1l5qxre.r-m611by').length==0) {
 	
 		initTryCount++;
 		if (initTryCount < MAX_INIT_TRY_COUNT) {
@@ -285,17 +285,17 @@ function TweepList(instanceIndex) {
 	this.userStorage = new TweepListStorage(this, userId, userName);
 	
 	menuId = 'tweepList_Menu_' + instanceIndex;
-	tweepMenuHTML =	'<div class="tweepList_Menu_Class" id="'+menuId+'">'
-							+'<div class="menuContainer"><div class="inner flex-module">'
-									+'<div class="menuFixToggle tweepList_Menu_Class_uiIcons" title="fix menu"></div>'
-									+'<a href="#" class="scrollArrow up"></a><div class="tweepAvatars"></div><a href="#" class="scrollArrow down"></a>'
-									+'<div id="menuResizeHandle" class="resizeHandle tweepList_Menu_Class_uiIcons ui-resizable-handle ui-resizable-s"></div>'
-							+'</div></div>'
-						+'</div>'
-	;
 	
 	
 	
+  tweepMenuHTML =
+  		'<div class="module tweepList_Menu_Class css-1dbjc4n r-1uaug3w r-1uhd6vh r-t23y2h r-1phboty r-rs99b7 r-ku1wi2 r-1udh08x" id="'+menuId+'"><div class="flex-module">'
+  	+		'<div class="menuContainer"><div class="inner">'
+  	+		'<div class="css-1dbjc4n r-1ila09b r-rull8r r-qklmqi r-1wtj0ep r-1j3t67a r-1w50u8q"><h2 class="css-1dbjc4n r-1sp7lne r-1vr29t4 r-1b6yd1w r-jwli3a r-1qd0xha r-ad9z0x">Tweep list</h2> · <a class="btn-link about-link css-4rbku5 css-18t94o4 css-901oao r-111h2gw r-1loqt21 r-1qd0xha r-n6v787 r-16dba41 r-1sf4r6n r-hrzydr r-bcqeeo r-1qfoi16 r-qvutc0" href="http://serdar.work">About</a></div>'
+  	+			'<div class="tweepAvatars"></div>'
+  	+		'</div></div>'
+  	+	'</div></div>'
+  ;
 	
 	
 	
@@ -313,14 +313,7 @@ function TweepList(instanceIndex) {
 			////////////
 			
 			
-			var TEST_BOX =
-					'<div class="module tweepList_Menu_Class" id="'+menuId+'"><div class="flex-module">'
-				+		'<div class="menuContainer"><div class="inner">'
-				+		'<div class="flex-module-header"><h3>Tweep list</h3> · <a class="btn-link" href="http://serdar.work">About</a></div>'
-				+			'<div class="tweepAvatars"></div>'
-				+		'</div></div>'
-				+	'</div></div>'
-			;
+			
 			
 			
 			
@@ -335,15 +328,21 @@ function TweepList(instanceIndex) {
 			else if ($('.ProfileSidebar .MoveableModule .SidebarCommonModules').length) {
 				targetContainer = $('.ProfileSidebar .MoveableModule .SidebarCommonModules');
 			}
-			
-			
-			
+      else if ($('.css-1dbjc4n.r-1l5qxre.r-m611by').length) {
+        console.log('found');
+        targetContainer = $('.css-1dbjc4n.r-1l5qxre.r-m611by');
+      }
+      
+      
 			if (targetContainer == false) {
 				return false;
 			}
 			
-			
-			targetContainer.prepend(TEST_BOX);
+      // r-1h3ijdo
+      console.log(">>" + targetContainer.find('.css-1dbjc4n.r-1h3ijdo').length);
+      var spacer = targetContainer.find('.r-1h3ijdo').eq(1);
+      spacer.after(tweepMenuHTML);
+      // targetContainer.prepend(tweepMenuHTML);
 			
 			
 			
@@ -765,44 +764,19 @@ function outFarEnoughToDelete(ui, container) {
 
 function addAvatarEvents(container) {
 	
-	var thisAvatar = container.find('.avatar');
+	var thisAvatar = container;
 	
-	if(thisAvatar.length == 0) {
-		thisAvatar = container.find('.js-action-profile-avatar');
-	}
 	
-	if(!thisAvatar) {
-		return;
-	}
+	
+	// if(!thisAvatar) {
+//     return;
+//   }
 	
 	if (thisAvatar.parent().hasClass('tweepListItem')) {
 		return false;
 	}
 	
-	if (thisAvatar.parent().parent().hasClass('stream-item-header')) {
-		
-		
-		
-		var leftPosition;
-		var leftMargin = thisAvatar.css('margin-left');
-		
-		switch(leftMargin) {
-			case '-42px':
-				leftPosition = '28px';
-			break;
-			case '-58px':
-				leftPosition = '12px';
-			break;
-		}
-		
-		thisAvatar.css({
-			position:'absolute'
-			,left: leftPosition
-			,marginLeft:'0'
-		});
-	
-	}
-	
+  
 	var self = thisAvatar;
 	
 	
@@ -823,8 +797,10 @@ function addAvatarEvents(container) {
 			
 			ui.helper.removeClass('js-tooltip');
 			ui.helper.css({
-				zIndex: 9999
-				,float: 'left'
+				zIndex: 9999,
+				float: 'left',
+        width: '49px',
+        height: '49px'
 				
 			});
 			
@@ -841,7 +817,9 @@ function addAvatarEvents(container) {
 
 function addEventsToAvatars() {
 	
-	$('body').on('mouseover.tweepListDrag', '#profile-hover-container .ProfileCard-avatarLink', function(e){
+
+  
+	$('body').on('mouseover.tweepListDrag', '.css-1dbjc4n.r-18kxxzh.r-1wbh5a2.r-13qz1uu', function(e){
 		
 		addAvatarEvents($(this));
 		

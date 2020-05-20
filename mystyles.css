@@ -7,7 +7,7 @@ html, body {
 }
 
 .SidebarCommonModules .tweepList_Menu_Class {
-	margin-top: 10px;
+
 }
 
 .tweepList_Menu_Class .menuContainer {
@@ -77,6 +77,12 @@ html, body {
 
 .tweepList_Menu_Class .btn-link {
 	font-size:12px;
+}
+
+.tweepList_Menu_Class .about-link {
+  position: absolute;
+  right: 1em;
+  top: 1.4em;
 }
 
 .tweepList_Menu_Class .flex-module-header h3 {
